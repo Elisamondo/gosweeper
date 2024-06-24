@@ -9,7 +9,7 @@ func minesweep(coord []int, oldBoard [][]string)(gameActive bool, board [][]stri
 
 	gameActive = true
 	coord[0] = len(oldBoard) - (coord[0])
-	if !(coord[0] >= 0) || !(coord[0] >= len(oldBoard[0]) || !(coord[1] >= 0) || !(coord[1] >= len(oldBoard))){
+	if !(coord[0] >= 0) || !(coord[0] >= len(oldBoard) || !(coord[1] >= 0) || !(coord[1] >= len(oldBoard[0]))){
 		setMessages("co-ordinate out of bounds")
 		return true, oldBoard
 	}
