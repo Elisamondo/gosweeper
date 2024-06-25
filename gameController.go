@@ -11,12 +11,14 @@ import (
 )
 func gameController(board [][]string){
 	gameActive := true
+	firstTurn := true
 	for (gameActive){
 		displayBoard(board)
-		gameActive, board = playerInteract(board)
+		gameActive, board = playerInteract(board, firstTurn)
 		if (gameActive){
 			gameActive = checkWinCons(board)
 		}
+		firstTurn = false
 	}
 }
 
@@ -71,7 +73,7 @@ func getCharacter(coord string)(char string){
 	return char
 }
 
-func playerInteract(oldBoard [][]string)(gameActive bool, board [][]string){
+func playerInteract(oldBoard [][]string, firstTurn bool)(gameActive bool, board [][]string){
 	reader := bufio.NewReader(os.Stdin)
 
 	input, _ := reader.ReadString('\n')
@@ -101,12 +103,14 @@ func playerInteract(oldBoard [][]string)(gameActive bool, board [][]string){
 	temp := rune(targetCoord[1][0])
 	convertedCoord[1] = int(temp - 'A')
 	convertedCoord[0], _ = strconv.Atoi(targetCoord[0])
+	convertedCoord[0] = len(oldBoard) - (convertedCoord[0])
+
 
 	if flag{
 		board = placeFlag(convertedCoord[:], board)
 		gameActive = true
 	} else {
-		gameActive, board = minesweep(convertedCoord[:], board)
+		gameActive, board = minesweep(convertedCoord[:], board, firstTurn)
 	}
 
 	return gameActive, board

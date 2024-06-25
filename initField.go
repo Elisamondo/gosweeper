@@ -65,29 +65,29 @@ func placeNumbers(oldBoard [][]string, coord [2]int)(board [][]string){
 	xRows := []int{(coord[1])-1,coord[1],(coord[1])+1}
 	yRows := []int{(coord[0])-1,coord[0],(coord[0])+1}
 
-	for i := range yRows{
-		if yRows[i] >= 0 && yRows[i] < len(oldBoard){
+	for y := range yRows{
+		if yRows[y] >= 0 && yRows[y] < len(oldBoard){
 			for x := range xRows{
 				if xRows[x] >= 0 && xRows[x] < len(oldBoard[0]){
-					switch oldBoard[yRows[i]][xRows[x]]{
+					switch oldBoard[yRows[y]][xRows[x]]{
 						case "!":
 							continue
 						case "X":
-							oldBoard[yRows[i]][xRows[x]] = "1"
+							oldBoard[yRows[y]][xRows[x]] = "1"
 						case "1":
-							oldBoard[yRows[i]][xRows[x]] = "2"
+							oldBoard[yRows[y]][xRows[x]] = "2"
 						case "2":
-							oldBoard[yRows[i]][xRows[x]] = "3"
+							oldBoard[yRows[y]][xRows[x]] = "3"
 						case "3":
-							oldBoard[yRows[i]][xRows[x]] = "4"
+							oldBoard[yRows[y]][xRows[x]] = "4"
 						case "4":
-							oldBoard[yRows[i]][xRows[x]] = "5"
+							oldBoard[yRows[y]][xRows[x]] = "5"
 						case "5":
-							oldBoard[yRows[i]][xRows[x]] = "6"
+							oldBoard[yRows[y]][xRows[x]] = "6"
 						case "6":
-							oldBoard[yRows[i]][xRows[x]] = "7"
+							oldBoard[yRows[y]][xRows[x]] = "7"
 						case "7":
-							oldBoard[yRows[i]][xRows[x]] = "8"
+							oldBoard[yRows[y]][xRows[x]] = "8"
 						} 
 					}
 				}
@@ -97,6 +97,7 @@ func placeNumbers(oldBoard [][]string, coord [2]int)(board [][]string){
 	board = oldBoard
 	return board
 }
+
 
 func getMines()(sendMines int){
 	sendMines = mines

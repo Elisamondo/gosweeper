@@ -5,10 +5,9 @@ import (
 	"strings"
 )
 
-func minesweep(coord []int, oldBoard [][]string)(gameActive bool, board [][]string){
+func minesweep(coord []int, oldBoard [][]string, firstTurn bool)(gameActive bool, board [][]string){
 
 	gameActive = true
-	coord[0] = len(oldBoard) - (coord[0])
 	if !(coord[0] >= 0) || !(coord[0] >= len(oldBoard) || !(coord[1] >= 0) || !(coord[1] >= len(oldBoard[0]))){
 		setMessages("co-ordinate out of bounds")
 		return true, oldBoard
@@ -18,12 +17,18 @@ func minesweep(coord []int, oldBoard [][]string)(gameActive bool, board [][]stri
 
 	switch {
 		case oldBoard[coord[0]][coord[1]] == "!":
-			gameActive = false
-			oldBoard[coord[0]][coord[1]] = "E"
-			board = oldBoard
-			board = revealMines(board)
-			setMessages("~~ game over! ~~")
-			displayBoard(board)
+			if (!firstTurn){
+				gameActive = false
+				oldBoard[coord[0]][coord[1]] = "E"
+				board = oldBoard
+				board = revealMines(board)
+				setMessages("~~ game over! ~~")
+				displayBoard(board)
+			} else{
+				firstTurn = false
+				oldBoard = firstTurnFailsafe(coord, oldBoard)
+				gameActive, oldBoard = minesweep(coord, oldBoard, gameActive)
+			}
 		case digitCheck.MatchString(oldBoard[coord[0]][coord[1]]):
 			if !strings.HasPrefix(oldBoard[coord[0]][coord[1]], "U"){
 				oldBoard[coord[0]][coord[1]] = "U" + oldBoard[coord[0]][coord[1]]
