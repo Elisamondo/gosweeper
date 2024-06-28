@@ -119,7 +119,7 @@ func playerInteract(oldBoard [][]string, firstTurn bool)(gameActive bool, board 
 func placeFlag(coord []int, oldBoard [][]string)(board [][]string){
 	board = oldBoard
 
-	coord[0] = len(board) - coord[0]
+	//coord[0] = len(board) - coord[0]
 
 	switch board[coord[0]][coord[1]]{
 		case "!":
