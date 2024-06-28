@@ -1,5 +1,6 @@
+# V:1.0.1
 
-# To Do
+## To Do
 
 - Init new game X
 - Generate field X
@@ -8,8 +9,7 @@
   - pick square X
   - flag X
 - Restart/Quit
-- Re-place mine on first click
-- Leaderboard
+- Re-place mine on first click X
 - Win con X
 - loss con X
 
@@ -63,7 +63,3 @@ Y
 
 ## bugs to fix
 
-- F column interacts poorly with -f trim X
-- player can choose co-ordinate outside of board range, exception caused as a result X
-- Too many U characters added to numbered co-ords due to
-  white space uncover script X
